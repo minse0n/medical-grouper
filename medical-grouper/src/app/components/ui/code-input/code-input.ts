@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { ICD_DATA, MedicalCode } from '../../core/models/medical-data';
+import { MedicalCode } from '../../../core/models/medical-data';
 
 @Component({
   selector: 'app-code-input',
@@ -23,9 +23,10 @@ import { ICD_DATA, MedicalCode } from '../../core/models/medical-data';
 })
 export class CodeInput implements OnInit {
   
-  myControl = new FormControl<string | MedicalCode>('');
 
-  options: MedicalCode[] = ICD_DATA;
+  @Input({ required: true }) myControl!: FormControl; 
+
+  @Input({ required: true }) options: MedicalCode[] = [];
   
   filteredOptions!: Observable<MedicalCode[]>;
 
@@ -33,13 +34,8 @@ export class CodeInput implements OnInit {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => {
-        if (typeof value === 'string') {
-          return value ? this._filter(value) : this.options.slice();
-        } 
-        
-        else {
-          return this.options.slice(); 
-        }
+        const name = typeof value === 'string' ? value : value?.description;
+        return name ? this._filter(name as string) : this.options.slice();
       }),
     );
   }

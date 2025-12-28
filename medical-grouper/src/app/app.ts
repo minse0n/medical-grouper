@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GrouperContainer } from './features/grouper/grouper-container/grouper-container';
-import { CodeInput } from './components/code-input/code-input';
+
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, GrouperContainer, CodeInput],
+  imports: [RouterOutlet, GrouperContainer],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

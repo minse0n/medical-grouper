@@ -1,0 +1,13 @@
+<div>
+  <app-patient-form></app-patient-form>
+  <app-code-list 
+  title="ICD-10 Diagnosen" 
+  [codeData]="icdList">
+</app-code-list>
+
+<app-code-list 
+  title="OPS Prozeduren" 
+  [codeData]="opsList">
+</app-code-list>
+  <app-result-view></app-result-view>
+</div>

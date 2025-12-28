@@ -1,6 +1,3 @@
-
-// medical-data.ts (또는 컴포넌트 파일 상단)
-
 export interface MedicalCode {
   code: string;
   description: string;
@@ -52,4 +49,47 @@ export const ICD_DATA: MedicalCode[] = [
   { code: 'T81.0', description: 'Blutung und Hämatom als Komplikation' },
   { code: 'Z38.0', description: 'Einling, Geburt im Krankenhaus' },
   { code: 'Z96.64', description: 'Vorhandensein einer Hüftgelenk-Endoprothese' },
+];
+
+export const OPS_DATA: MedicalCode[] = [
+  { code: '1-632', description: 'Diagnostische Ösophagogastroduodenoskopie' },
+  { code: '1-650.2', description: 'Diagnostische Koloskopie' },
+  { code: '1-710', description: 'Ganzkörperplethysmographie' },
+  { code: '3-200', description: 'Native CT des Schädels' },
+  { code: '3-222', description: 'CT des Thorax mit Kontrastmittel' },
+  { code: '3-802', description: 'Native MRT des Schädels' },
+  { code: '3-823', description: 'MRT der Wirbelsäule mit Kontrastmittel' },
+  { code: '5-032.00', description: 'Lumbale Laminektomie' },
+  { code: '5-144.0', description: 'Kataraktoperation mit Linsenimplantation' },
+  { code: '5-469.21', description: 'Laparoskopische Appendektomie' },
+  { code: '5-470.11', description: 'Laparoskopische Cholezystektomie' },
+  { code: '5-511.11', description: 'Cholezystektomie, einfach' },
+  { code: '5-530.31', description: 'Verschluss einer Hernia inguinalis, mit Netz' },
+  { code: '5-820.00', description: 'Implantation Hüft-TEP, zementfrei' },
+  { code: '5-820.92', description: 'Hüft-TEP Wechsel' },
+  { code: '5-822.11', description: 'Implantation Knie-TEP, bikondylär' },
+  { code: '5-831.0', description: 'Exzision von Bandscheibengewebe' },
+  { code: '5-893.1c', description: 'Chirurgische Wundtoilette, großflächig' },
+  { code: '5-916.a0', description: 'Temporäre Weichteildeckung' },
+  { code: '8-121', description: 'Darmspülung' },
+  { code: '8-144.0', description: 'Therapeutische Drainage der Pleurahöhle' },
+  { code: '8-390.0', description: 'Lagerungsbehandlung bei Schwindel' },
+  { code: '8-522.c1', description: 'Hochvoltstrahlentherapie' },
+  { code: '8-542.11', description: 'Chemotherapie nicht komplex' },
+  { code: '8-547.31', description: 'Immuntherapie mit Checkpoint-Inhibitor' },
+  { code: '8-550.1', description: 'Geriatrische frührehabilitative Komplexbehandlung' },
+  { code: '8-552.8', description: 'Neurologische Komplexbehandlung' },
+  { code: '8-559.31', description: 'Fachübergreifende Frührehabilitation' },
+  { code: '8-701', description: 'Einfache endotracheale Intubation' },
+  { code: '8-706', description: 'Anlegen einer Maske zur maschinellen Beatmung' },
+  { code: '8-800.c0', description: 'Transfusion von Erythrozytenkonzentrat' },
+  { code: '8-831.0', description: 'Legen eines zentralvenösen Katheters' },
+  { code: '8-837.00', description: 'Perkutan-transluminale Gefäßintervention, Koronarien' },
+  { code: '8-854.2', description: 'Hämodialyse' },
+  { code: '8-918.00', description: 'Multimodale Schmerztherapie' },
+  { code: '8-980.10', description: 'Intensivmedizinische Komplexbehandlung, 185-552 Punkte' },
+  { code: '8-98b.11', description: 'Andere neurologische Komplexbehandlung' },
+  { code: '9-200.6', description: 'Hochaufwendige Pflege von Erwachsenen' },
+  { code: '9-401.00', description: 'Psychosomatische Komplexbehandlung' },
+  { code: '9-984.8', description: 'Pflegekomplexmaßnahmen-Score' },
 ];
