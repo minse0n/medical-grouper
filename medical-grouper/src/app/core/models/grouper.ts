@@ -10,11 +10,6 @@ export interface PatientData {
   dischargeType: string;                // Entlassungsart (Dropdown)
 }
 
-export interface MedicalCode {
-  code: string;       
-  description: string;
-}
-
 export interface DiagnosisEntry {
   code: string;
 }
