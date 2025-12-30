@@ -33,6 +33,7 @@ export class OpsCodeInput implements OnInit {
           opt.code.toLowerCase().includes(filterValue) || 
           opt.description.toLowerCase().includes(filterValue)
         );
+        
       })
     );
   }

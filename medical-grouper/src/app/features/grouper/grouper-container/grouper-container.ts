@@ -18,15 +18,14 @@ export class GrouperContainer {
 
   showResult = false;
 
-  // 전체 유효성 검사 로직
   get isAllValid(): boolean {
-    // 모든 섹션이 로드되었는지 확인
+
     if (!this.patientSection?.patientForm || !this.icdSection?.formArray || !this.opsSection?.formArray) {
       return false;
     }
 
     const patientValid = this.patientSection.patientForm.valid; // 환자 데이터 필수
-    const icdValid = this.icdSection.formArray.valid && this.icdSection.formArray.length >= 2; // ICD 최소 2개
+    const icdValid = this.icdSection.formArray.valid && this.icdSection.formArray.length >= 1; // ICD 최소 1개
     const opsValid = this.opsSection.formArray.valid && this.opsSection.formArray.length >= 1; // OPS 최소 1개
 
     return patientValid && icdValid && opsValid;
@@ -38,6 +37,6 @@ export class GrouperContainer {
 
   handleReset() {
     this.showResult = false;
-    // 초기화 로직 추가 가능
+    // reset logic
   }
 }

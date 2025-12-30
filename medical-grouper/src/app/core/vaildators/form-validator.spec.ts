@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Catalog } from './catalog';
+import { FormValidator } from './form-validator';
 
-describe('Catalog', () => {
-  let service: Catalog;
+describe('FormValidator', () => {
+  let service: FormValidator;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Catalog);
+    service = TestBed.inject(FormValidator);
   });
 
   it('should be created', () => {

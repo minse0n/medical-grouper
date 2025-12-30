@@ -43,7 +43,7 @@ export class CodeList implements OnInit {
   }
 
   removeItem(index: number) {
-    const minCount = this.listType === 'ICD' ? 2 : 1;
+    const minCount = this.listType === 'ICD' ? 1 : 1;
     if (this.formArray.length > minCount) {
       this.formArray.removeAt(index);
     }
