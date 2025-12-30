@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { MedicalCode } from '../../../core/models/medical-data';
+import { MedicalCode, ICD_DATA } from '../../../core/models/medical-data';
 
 @Component({
   selector: 'app-code-input',
@@ -20,13 +20,14 @@ import { MedicalCode } from '../../../core/models/medical-data';
     ReactiveFormsModule,
   ],
   templateUrl: './code-input.html',
+  styleUrl: './code-input.css',
 })
 export class CodeInput implements OnInit {
   
 
   @Input({ required: true }) myControl!: FormControl; 
 
-  @Input({ required: true }) options: MedicalCode[] = [];
+  options: MedicalCode[] = ICD_DATA;
   
   filteredOptions!: Observable<MedicalCode[]>;
 

@@ -1,36 +1,28 @@
+// 섹션 1: 환자 기초 데이터
 export interface PatientData {
-  gender: 'male' | 'female' | 'divers'; // Geschlecht (Dropdown)
-  age: number;                          // Alter (in Jahren, schritt in integer)
-  weight: number;                       // Aufnahmegewicht (gramm)
-  ventilationHours: number;             // Beatmungszeit
-  lengthOfStay: number;                 // Verweildauer (Tage)
-  department: string;                   // Abteilungstyp (Dropdown)
-  admissionType: string;                // Aufnahmeart (Dropdown)
-  admissionReason: string;              // Aufnahmeanlass (Dropdown)
-  dischargeType: string;                // Entlassungsart (Dropdown)
+  gender: 'male' | 'female' | 'divers'; // 성별
+  age: number; // 연령
+  weight: number; // 입원 체중 (g)
+  lengthOfStay: number; // 재원 기간 (일)
+  ventilationHours: number; // 인공호흡 시간 (옵션, 0 가능)
+  department: string; // 진료과
+  admissionReason: string; // 입원 사유
+  dischargeType: string; // 퇴원 유형
 }
 
-export interface DiagnosisEntry {
-  code: string;
+export interface MedicalCode {
+  code: string; // 예: J10.2 또는 6-001.2
+  date?: Date; 
 }
 
-export interface ProcedureEntry {
-  code: string;
-  date: string; // dd.MM.yyyy
-}
-
-export interface GrouperCaseData {
+// 전체 폼 데이터 구조
+export interface GrouperCase {
   patient: PatientData;
-  diagnoses: DiagnosisEntry[];   // mind. 2
-  procedures: ProcedureEntry[];  // mind. 2
-  baseRate: number;             // Basisfallwert
-  careRate: number;             // Pflegeentgeltwert
-  groupDrg: string;           // Gruppierungs-DRG
-}
-
-export interface GrouperResult {
-  drgCode: string;        // 960Z
-  drgDescription: string; // Nicht gruppierbar...
-  revenue: number;        // (Euro)
-  // ... weitere Felder nach Bedarf
+  icdCodes: MedicalCode[]; // 최소 2개
+  opsCodes: MedicalCode[]; // 최소 1개
+  context: {
+    // 섹션 4: 추가 정보 (기본값 활용)
+    baseValue: number;
+    careValue: number;
+  };
 }

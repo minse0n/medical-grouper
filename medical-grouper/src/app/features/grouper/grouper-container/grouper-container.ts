@@ -1,16 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CodeList } from '../../../components/code-list/code-list';
 import { PatientForm } from '../../../components/patient-form/patient-form';
+import { BillingContext } from "../../../components/billing-context/billing-context";
 import { ResultView } from '../../../components/result-view/result-view';
-import { ICD_DATA, OPS_DATA } from '../../../core/models/medical-data';
 
 @Component({
   selector: 'app-grouper-container',
-  imports: [CodeList, PatientForm, ResultView],
+  standalone: true,
+  imports: [CodeList, PatientForm, ResultView, CommonModule, BillingContext],
   templateUrl: './grouper-container.html',
-  styleUrl: './grouper-container.css',
 })
 export class GrouperContainer {
-  icdList = ICD_DATA;
-  opsList = OPS_DATA;
+  @ViewChild(PatientForm) patientSection!: PatientForm;
+  @ViewChild('icdList') icdSection!: CodeList;
+  @ViewChild('opsList') opsSection!: CodeList;
+
+  showResult = false;
+
+  // 전체 유효성 검사 로직
+  get isAllValid(): boolean {
+    // 모든 섹션이 로드되었는지 확인
+    if (!this.patientSection?.patientForm || !this.icdSection?.formArray || !this.opsSection?.formArray) {
+      return false;
+    }
+
+    const patientValid = this.patientSection.patientForm.valid; // 환자 데이터 필수
+    const icdValid = this.icdSection.formArray.valid && this.icdSection.formArray.length >= 2; // ICD 최소 2개
+    const opsValid = this.opsSection.formArray.valid && this.opsSection.formArray.length >= 1; // OPS 최소 1개
+
+    return patientValid && icdValid && opsValid;
+  }
+
+  handleGroup() {
+    this.showResult = true; // 결과 표시 (하드코딩 데이터 전환)
+  }
+
+  handleReset() {
+    this.showResult = false;
+    // 초기화 로직 추가 가능
+  }
 }

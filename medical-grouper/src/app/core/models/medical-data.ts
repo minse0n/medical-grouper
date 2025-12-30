@@ -92,4 +92,47 @@ export const OPS_DATA: MedicalCode[] = [
   { code: '9-200.6', description: 'Hochaufwendige Pflege von Erwachsenen' },
   { code: '9-401.00', description: 'Psychosomatische Komplexbehandlung' },
   { code: '9-984.8', description: 'Pflegekomplexmaßnahmen-Score' },
+  { code: '9-984.8', description: 'ddddddddjioewtjoqwejtrifjwepgfjprifjpiawdjnfiovasdhfvnsdafkjnsdajfvjnasdpfijaiifwejdcdsk-Score' },
+];
+
+  export const genders = [
+    { value: 'female', viewValue: 'Weiblich' },
+    { value: 'male', viewValue: 'Männlich' },
+    { value: 'divers', viewValue: 'Divers' },
+  ];
+
+  export const ageUnits = [
+    { value: 'years', viewValue: 'Jahre' },
+    { value: 'days', viewValue: 'Tage' }
+  ];
+
+  export const departments = [
+  { value: 'hauptabteilung', viewValue: 'Hauptabteilung' },
+  { value: 'hauptabteilungMitBeleghebamme', viewValue: 'Hauptabteilung mit Beleghebamme' },
+  { value: 'belegoperateur', viewValue: 'Belegoperateur' },
+  { value: 'belegoperateurUndBeleganaesthesist', viewValue: 'Belegoperateur und Beleganästhesist' },
+  { value: 'belegoperateurUndBeleghebamme', viewValue: 'Belegoperateur und Beleghebamme' },
+  { value: 'belegKomplett', viewValue: 'Belegoperateur, Beleganästhesist & Beleghebamme' },
+  { value: 'versorgungDurchTeilstationaer', viewValue: 'Versorgung durch teilstationär' },
+];
+
+  export const admissionTypes = [
+  { value: 'vollstationaer', viewValue: 'Krankenhausbehandlung, vollstationär' },
+  { value: 'teilstationaer', viewValue: 'Krankenhausbehandlung, teilstationär' },
+  { value: 'hybridDrg', viewValue: 'Behandlung nach § 115f SGB V (Hybrid-DRG)' },
+];
+
+  export const admissionReasons = [
+  { value: 'einweisung', viewValue: 'Einweisung' },
+  { value: 'notfall', viewValue: 'Notfall' },
+  { value: 'verlegungLaengerAls24h', viewValue: 'Verlegung mit Behandlungsdauer im verlegenden Krankenhaus länger als 24 Stunden' },
+  { value: 'verlegungBisZu24h', viewValue: 'Verlegung mit Behandlungsdauer im verlegenden Krankenhaus bis zu 24 Stunden' },
+];
+
+  export const dischargeTypes = [
+  { value: 'regulaerBeendet', viewValue: 'Behandlung regulär beendet' },
+  { value: 'sonstigeGruende', viewValue: 'Behandlung aus sonstigen Gründen beendet (z.B. Entlassung in Reha, Pflege, Hospiz, gg. ärztlichen Rat, etc.)' },
+  { value: 'verlegung', viewValue: 'Verlegung in ein anderes somatisches Akutkrankenhaus' },
+  { value: 'tod', viewValue: 'Tod' },
+  { value: 'interneVerlegung', viewValue: 'interne Verlegung mit Wechsel zwischen BPflV und KHEntgG' },
 ];

@@ -1,0 +1,5 @@
+/* 1. 드롭다운 메뉴 배경색 문제 해결 */
+::ng-deep .mat-mdc-autocomplete-panel {
+  background-color: white !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important; /* 드롭다운에도 그림자 추가 */
+}

@@ -1,27 +1,55 @@
-import { Component } from '@angular/core';
-import { CodeInput } from '../ui/code-input/code-input';
-import { Input } from '@angular/core';
-import { MedicalCode } from '../../core/models/medical-data';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormArray, FormControl } from '@angular/forms';
+import { ReactiveFormsModule, FormArray, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { IcdCodeInput } from '../ui/icd-code-input/icd-code-input';
+import { OpsCodeInput } from '../ui/ops-code-input/ops-code-input';
 
 @Component({
   selector: 'app-code-list',
+  standalone: true,
   imports: [
-    CommonModule, 
-    ReactiveFormsModule, // formArray 쓰려면 필수!
-    CodeInput            // <app-code-input> 쓰려면 필수!
+    CommonModule,
+    ReactiveFormsModule,
+    IcdCodeInput,
+    OpsCodeInput
   ],
   templateUrl: './code-list.html',
-  styleUrl: './code-list.css',
 })
-export class CodeList {
-  // [핵심] 부모가 "이거 써!" 하고 주는 데이터 리스트
-  @Input({ required: true }) codeData: MedicalCode[] = []; 
-
-  // 제목도 부모가 정해줌 ("진단명" or "수술명")
+export class CodeList implements OnInit {
   @Input() title: string = '';
+  @Input() listType: 'ICD' | 'OPS' = 'ICD';
 
-  formArray = new FormArray([new FormControl('')]);
+  formArray: FormArray = new FormArray<any>([]);
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit() {
+    // 초기화: ICD는 최소 2개, OPS는 최소 1개 필수
+    const initialCount = this.listType === 'ICD' ? 2 : 1;
+    for (let i = 0; i < initialCount; i++) {
+      this.addItem();
+    }
+  }
+
+  addItem() {
+    if (this.listType === 'ICD') {
+      this.formArray.push(new FormControl('', Validators.required));
+    } else {
+      this.formArray.push(this.fb.group({
+        code: ['', Validators.required],
+        date: [new Date().toISOString().split('T')[0], Validators.required] // input type="date" 호환용 포맷
+      }));
+    }
+  }
+
+  removeItem(index: number) {
+    const minCount = this.listType === 'ICD' ? 2 : 1;
+    if (this.formArray.length > minCount) {
+      this.formArray.removeAt(index);
+    }
+  }
+
+  get controls() { return this.formArray.controls; }
+  asFormGroup(ctrl: any): FormGroup { return ctrl as FormGroup; }
+  asFormControl(ctrl: any): FormControl { return ctrl as FormControl; }
 }

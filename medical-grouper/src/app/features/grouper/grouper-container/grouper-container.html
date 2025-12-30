@@ -1,13 +1,49 @@
-<div>
-  <app-patient-form></app-patient-form>
-  <app-code-list 
-  title="ICD-10 Diagnosen" 
-  [codeData]="icdList">
-</app-code-list>
+<div class="min-h-screen bg-slate-50 p-4 md:p-8">
+  <div class="max-w-6xl mx-auto space-y-6">
+    
+    <header class="mb-8">
+      <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Webgrouper 2025</h1>
+      <p class="text-slate-500 mt-2 font-medium">의료 포괄수가제(G-DRG) 산정 도구 현대화 프로젝트</p>
+    </header>
 
-<app-code-list 
-  title="OPS Prozeduren" 
-  [codeData]="opsList">
-</app-code-list>
-  <app-result-view></app-result-view>
+    @if (!showResult) {
+      <app-patient-form class="block animate-in fade-in slide-in-from-bottom-4 duration-500"></app-patient-form>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <app-code-list 
+          #icdList
+          title="Diagnosen (ICD-10-GM)" 
+          listType="ICD"
+          class="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
+        </app-code-list>
+
+        <app-code-list 
+          #opsList
+          title="Prozeduren (OPS)" 
+          listType="OPS"
+          class="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
+        </app-code-list>
+      </div>
+
+      <app-billing-context 
+        [isValidOverride]="isAllValid"
+        (group)="handleGroup()"
+        (reset)="handleReset()"
+        class="block animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
+      </app-billing-context>
+
+    } @else {
+      <div class="animate-in zoom-in duration-300">
+        <app-result-view></app-result-view>
+        
+        <div class="mt-8 flex justify-center">
+          <button (click)="handleReset()" 
+                  class="px-8 py-3 bg-white border border-slate-200 text-slate-600 font-bold rounded-xl hover:bg-slate-50 transition-all shadow-sm">
+            ← 입력 화면으로 돌아가기
+          </button>
+        </div>
+      </div>
+    }
+
+  </div>
 </div>
