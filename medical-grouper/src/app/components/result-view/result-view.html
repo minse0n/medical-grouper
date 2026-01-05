@@ -1,47 +1,67 @@
-<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mt-6">
-  <h3 class="text-lg font-bold text-slate-800 mb-4">Gruppierungsergebnis</h3>
-  
-  <div class="space-y-4 text-sm text-slate-700" *ngIf="data">
-    
-    <div class="border-b border-slate-100 pb-2">
-      <h4 class="font-semibold text-slate-900 mb-2">Patientendaten</h4>
-      <div class="grid grid-cols-2 gap-2">
-        <div>Geschlecht: {{ data.patient.gender }}</div>
-        <div>Alter: {{ data.patient.age }} {{ data.patient.ageUnit }}</div>
-        <div>Gewicht: {{ data.patient.weight }}g</div>
-        <div>Verweildauer: {{ data.patient.lengthOfStay }} Tage</div>
-        <div>Beatmung: {{ data.patient.ventilationHours || 0 }} Std.</div>
+<div class="bg-white border border-slate-300 mt-8 rounded-lg shadow-sm animate-in fade-in slide-in-from-bottom-4 duration-500">
+
+  <div class="px-6 py-4 border-b border-slate-100 bg-slate-50/50">
+    <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+      Gruppierungsergebnis
+    </h2>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <div class="p-6 flex-grow">
+      
+      <div>
+        <h3 class="font-bold text-slate-700 mb-2 border-b border-slate-100 pb-1">Patientendaten</h3>
+        <ul class="space-y-1 text-sm text-slate-600">
+          <li><span class=" w-28 inline-block">Fallnummer:</span> 2025-123456</li>
+          <li><span class=" w-28 inline-block">Geschlecht:</span> {{ data?.patient?.gender }}</li>
+          <li>
+            <span class="font-semibold w-28 inline-block">Alter:</span> 
+            {{ data?.patient?.age }} 
+            @if (data?.patient?.ageUnit === 'years') { Jahre }
+            @else { Tage }
+          </li>
+          <li><span class=" w-28 inline-block">Gewicht:</span> {{ data?.patient?.weight }} g</li>
+          <li><span class=" w-28 inline-block">Verweildauer:</span> {{ data?.patient?.lengthOfStay }} Tage</li>
+          <li><span class=" w-28 inline-block">Beatmung:</span> {{ data?.patient?.ventilationHours || 0 }} Std.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-700 mb-2 pt-2 border-b border-slate-100 pb-1">Bewertungsparameter</h3>
+        <ul class="space-y-1 text-sm text-slate-600">
+          <li><span class=" w-32 inline-block">Basisfallwert:</span> {{ data?.billing?.baseRate }} €</li>
+          <li><span class=" w-32 inline-block">Pflegeentgelt:</span> {{ data?.billing?.careRate }} €</li>
+          <li><span class=" w-32 inline-block">Effektivgewicht:</span> 1,245</li>
+          <li><span class=" w-32 inline-block">PCCL:</span> 3</li>
+        </ul>
       </div>
     </div>
 
-    <div class="border-b border-slate-100 pb-2">
-      <h4 class="font-semibold text-slate-900 mb-2">Diagnosen</h4>
-      <ul class="list-disc pl-5">
-        @for (code of data.icd; track $index) {
-          <li>{{ code }}</li>
-        }
-        @if (data.icd.length === 0) { <li class="text-slate-400 italic">Keine Diagnosen</li> }
-      </ul>
-    </div>
-
-    <div class="border-b border-slate-100 pb-2">
-      <h4 class="font-semibold text-slate-900 mb-2">Prozeduren</h4>
-      <ul class="list-disc pl-5">
-        @for (proc of data.ops; track $index) {
-          <li>{{ proc.code }} ({{ proc.date }})</li>
-        }
-        @if (data.ops.length === 0) { <li class="text-slate-400 italic">Keine Prozeduren</li> }
-      </ul>
-    </div>
-
-    <div>
-      <h4 class="font-semibold text-slate-900 mb-2">Abrechnungsdaten</h4>
-      <div class="grid grid-cols-2 gap-2">
-        <div>Basisfallwert: {{ data.billing.baseRate }} €</div>
-        <div>Pflegeentgelt: {{ data.billing.careRate }} €</div>
-        <div>Version: {{ data.billing.drgVersion }}</div>
+    <div class="p-6 flex-grow">
+      
+      <div>
+        <h3 class="font-bold text-slate-700 mb-2 border-b border-slate-100 pb-1">Diagnosen (ICD)</h3>
+        <ul class="list-disc pl-5 text-sm text-slate-600 space-y-1">
+          @for (icd of data?.icd; track $index) {
+            <li>{{ icd }}</li>
+          }
+          @if (!data?.icd?.length) { <li>-</li> }
+        </ul>
       </div>
-    </div>
 
+      <div>
+        <h3 class="font-bold text-slate-700 pt-2 mb-2 border-b border-slate-100 pb-1">Prozeduren (OPS)</h3>
+        <ul class="list-disc pl-5 text-sm text-slate-600 space-y-1">
+          @for (ops of data?.ops; track $index) {
+            <li>
+              <span class="font-medium text-slate-700">{{ ops.code }}</span> 
+              <span class="text-slate-400 text-xs ml-2">({{ ops.date }})</span>
+            </li>
+          }
+          @if (!data?.ops?.length) { <li>-</li> }
+        </ul>
+      </div>
+
+    </div>
   </div>
 </div>

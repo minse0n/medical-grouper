@@ -15,7 +15,6 @@ import { ResultView } from '../../../components/result-view/result-view';
 })
 export class GrouperContainer {
   @ViewChild(PatientForm) patientSection!: PatientForm;
-  
   @ViewChild('icdList') icdSection!: IcdCodeList;
   @ViewChild('opsList') opsSection!: OpsCodeList;
 
@@ -50,6 +49,8 @@ export class GrouperContainer {
               .filter(v => !!v.code),
         billing: this.billingSection.billingForm.getRawValue()
       };
+
+      console.log('Grouper Result Data:', this.resultData);
 
       this.showResult = true;
     } else {

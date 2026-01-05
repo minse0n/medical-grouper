@@ -40,6 +40,7 @@ export class BillingContext {
   resetForm() {
     if (confirm('Möchten Sie wirklich einen neuen Fall anlegen? Alle eingegebenen Daten gehen verloren.')) {
       this.billingForm.reset({ baseRate: null, careRate: null, drgVersion: '2025' });
+      this.showError = false;
       this.reset.emit();
     }
   }
