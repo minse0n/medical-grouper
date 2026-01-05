@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-result-view',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './result-view.html',
   styleUrl: './result-view.css',
 })
 export class ResultView {
-
+  @Input() data: any; 
 }

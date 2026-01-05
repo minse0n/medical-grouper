@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OpsCodeInput } from './ops-code-input';
+import { OpsCodeList } from './ops-code-list';
 
-describe('OpsCodeInput', () => {
-  let component: OpsCodeInput;
-  let fixture: ComponentFixture<OpsCodeInput>;
+describe('OpsCodeList', () => {
+  let component: OpsCodeList;
+  let fixture: ComponentFixture<OpsCodeList>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OpsCodeInput]
+      imports: [OpsCodeList]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(OpsCodeInput);
+    fixture = TestBed.createComponent(OpsCodeList);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

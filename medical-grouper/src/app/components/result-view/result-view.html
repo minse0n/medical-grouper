@@ -1,1 +1,47 @@
-<p>result-view works!</p>
+<div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mt-6">
+  <h3 class="text-lg font-bold text-slate-800 mb-4">Gruppierungsergebnis</h3>
+  
+  <div class="space-y-4 text-sm text-slate-700" *ngIf="data">
+    
+    <div class="border-b border-slate-100 pb-2">
+      <h4 class="font-semibold text-slate-900 mb-2">Patientendaten</h4>
+      <div class="grid grid-cols-2 gap-2">
+        <div>Geschlecht: {{ data.patient.gender }}</div>
+        <div>Alter: {{ data.patient.age }} {{ data.patient.ageUnit }}</div>
+        <div>Gewicht: {{ data.patient.weight }}g</div>
+        <div>Verweildauer: {{ data.patient.lengthOfStay }} Tage</div>
+        <div>Beatmung: {{ data.patient.ventilationHours || 0 }} Std.</div>
+      </div>
+    </div>
+
+    <div class="border-b border-slate-100 pb-2">
+      <h4 class="font-semibold text-slate-900 mb-2">Diagnosen</h4>
+      <ul class="list-disc pl-5">
+        @for (code of data.icd; track $index) {
+          <li>{{ code }}</li>
+        }
+        @if (data.icd.length === 0) { <li class="text-slate-400 italic">Keine Diagnosen</li> }
+      </ul>
+    </div>
+
+    <div class="border-b border-slate-100 pb-2">
+      <h4 class="font-semibold text-slate-900 mb-2">Prozeduren</h4>
+      <ul class="list-disc pl-5">
+        @for (proc of data.ops; track $index) {
+          <li>{{ proc.code }} ({{ proc.date }})</li>
+        }
+        @if (data.ops.length === 0) { <li class="text-slate-400 italic">Keine Prozeduren</li> }
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="font-semibold text-slate-900 mb-2">Abrechnungsdaten</h4>
+      <div class="grid grid-cols-2 gap-2">
+        <div>Basisfallwert: {{ data.billing.baseRate }} €</div>
+        <div>Pflegeentgelt: {{ data.billing.careRate }} €</div>
+        <div>Version: {{ data.billing.drgVersion }}</div>
+      </div>
+    </div>
+
+  </div>
+</div>

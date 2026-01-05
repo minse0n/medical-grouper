@@ -1,22 +1,19 @@
 <div class="min-h-screen bg-slate-50 p-4 md:p-8">
   <div class="max-w-6xl mx-auto space-y-6">
-    @if (!showResult) {
       <app-patient-form class="block animate-in fade-in slide-in-from-bottom-4 duration-500"></app-patient-form>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <app-code-list 
+        <app-icd-code-list 
           #icdList
           title="Diagnosen (ICD-10-GM)" 
-          listType="ICD"
           class="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-100">
-        </app-code-list>
+        </app-icd-code-list>
 
-        <app-code-list 
+        <app-ops-code-list 
           #opsList
           title="Prozeduren (OPS)" 
-          listType="OPS"
           class="animate-in fade-in slide-in-from-bottom-4 duration-500 delay-200">
-        </app-code-list>
+        </app-ops-code-list>
       </div>
 
       <app-billing-context 
@@ -26,18 +23,9 @@
         class="block animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
       </app-billing-context>
 
-    } @else {
-      <div class="animate-in zoom-in duration-300">
-        <app-result-view></app-result-view>
-        
-        <div class="mt-8 flex justify-center">
-          <button (click)="handleReset()" 
-                  class="px-8 py-3 bg-white border border-slate-200 text-slate-600 font-bold rounded-xl hover:bg-slate-50 transition-all shadow-sm">
-            ← 입력 화면으로 돌아가기
-          </button>
-        </div>
+      <div *ngIf="showResult" #resultRef class="animate-in zoom-in duration-300">
+        <app-result-view [data]="resultData"></app-result-view>
       </div>
-    }
 
   </div>
 </div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CodeList } from './code-list';
+import { IcdCodeList } from './icd-code-list';
 
-describe('CodeList', () => {
-  let component: CodeList;
-  let fixture: ComponentFixture<CodeList>;
+describe('IcdCodeList', () => {
+  let component: IcdCodeList;
+  let fixture: ComponentFixture<IcdCodeList>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CodeList]
+      imports: [IcdCodeList]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CodeList);
+    fixture = TestBed.createComponent(IcdCodeList);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
