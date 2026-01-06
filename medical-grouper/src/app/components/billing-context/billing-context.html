@@ -2,7 +2,7 @@
   <form [formGroup]="billingForm" class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
 
     <div class="col-span-12 md:col-span-2">
-      <label class="block text-sm text-slate-700 mb-1.5 ml-1">Basisfallwert</label>
+      <label class="block text-sm text-slate-700 mb-1.5 ml-1">Basisfallwert*</label>
       <div class="relative">
         <input type="number" formControlName="baseRate"
                [ngClass]="isInvalid('baseRate') ? 'border-slate-200 bg-white ring-4 ring-red-500/10'  : 'border-slate-200 bg-white'"
@@ -15,7 +15,7 @@
     </div>
 
     <div class="col-span-12 md:col-span-2">
-      <label class="block text-sm text-slate-700 mb-1.5 ml-1">Pflegeentgeltwert</label>
+      <label class="block text-sm text-slate-700 mb-1.5 ml-1">Pflegeentgeltwert*</label>
       <div class="relative">
         <input type="number" formControlName="careRate"
                [ngClass]="isInvalid('careRate') ? 'border-slate-200 bg-white ring-4 ring-red-500/10'  : 'border-slate-200 bg-white'"
