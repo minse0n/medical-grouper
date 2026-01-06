@@ -23,7 +23,7 @@
                     (focus)="openDropdown(i)"
                     [ngClass]="((showError && formArray.invalid) || row.group.get('code')?.hasError('invalidSelection')) ? 'border-slate-200 bg-white ring-4 ring-red-500/10' : 'border-slate-200 bg-white'"
                     class="w-full pl-4 pr-7 py-3 border rounded-xl outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all text-slate-700 shadow-sm"
-                    placeholder="OPS suchen">
+                    placeholder="OPS Code oder Beschreibung suchen">
 
                   @if (row.group.get('code')?.value) {
                     <button 

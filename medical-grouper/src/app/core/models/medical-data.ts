@@ -92,7 +92,6 @@ export const OPS_DATA: MedicalCode[] = [
   { code: '9-200.6', description: 'Hochaufwendige Pflege von Erwachsenen' },
   { code: '9-401.00', description: 'Psychosomatische Komplexbehandlung' },
   { code: '9-984.8', description: 'Pflegekomplexmaßnahmen-Score' },
-  { code: '9-984.8', description: 'ddddddddjioewtjoqwejtrifjwepgfjprifjpiawdjnfiovasdhfvnsdafkjnsdajfvjnasdpfijaiifwejdcdsk-Score' },
 ];
 
   export const genders = [
